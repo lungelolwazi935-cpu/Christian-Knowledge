@@ -1,0 +1,25 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+}
+header {
+    background: #0b1c2c;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+nav {
+    background: #132f4c;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
