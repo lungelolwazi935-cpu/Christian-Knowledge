@@ -1,15 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Articles - Christian Knowledge</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+.article-list {
+    max-width: 800px;
+    margin: auto;
+}
+
+.article-item {
+    background: #f4f4f4;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+button {
+    padding: 8px 15px;
+    background: #0b2c4a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+</style>
+
 </head>
 
 <body>
-<h1>Biblical Articles</h1>
 
-<h3></h3>
-<p>"</p>
+<header>
+    <h1>CHRISTIAN KNOWLEDGE</h1>
+    <p>Understanding the truth through scripture</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="books.html">Books</a>
+    <a href="videos.html">Videos</a>
+    <a href="articles.html">Biblical Articles</a>
+</nav>
+
+<section class="article-list">
+    <h2>Biblical Articles</h2>
+
+    <div id="articles-container"></div>
+
+</section>
+
+<script>
+const articles = [
+    { title: "4 Kingdoms and the 5th Kingdom of the Messiah", file: "article1.pdf" },
+    { title: "Blasphemies of Jehovah's witness", file: "article2.pdf" },
+    { title: "Constantine didn't establish Christianity", file: "article3.pdf" },
+    { title: "Did Christ say we must keep the Law to go to heaven", file: "article4.pdf" }
+    { title: "Did God promote Genocide in the OT", file: "article5.pdf"}
+    { title: "DID YESHUA TEACH PEOPLE TO KEEP THE LAW OF MOSES", file: "article6.pdf"}
+    { title: "GOD ALREADY PREPARED FOR THE NEW COVENANT", file: "article7.pdf"}
+    { title: "God is Multi-personal", file: "article8.pdf"}
+    { title: "igama lika Jesu yilona elimelwe ukudunyiswa ", file: "article9.pdf"}
+    { title: "iqiniso ngoShembe naye kholelwa yikho", file: "article10.pdf"}
+    { title: "JESUS AND THE SPIRIT IS YAHWEH GOD", file: "article11.pdf"}
+    { title: "JESUS IS JEHOVAH GOD IN JW BIBLE", file: "article12.pdf"}
+    { title: "JESUS IS GOD ACCORDING TO THE QURAN", file: "article13.pdf"}
+    { title: "JESUS-THE ANGEL OF THE LORD", file: "article14.pdf"}
+    { title: "JOHN 17", file: "article15.pdf"}
+];
+
+const container = document.getElementById("articles-container");
+
+articles.forEach(article => {
+    container.innerHTML += `
+        <div class="article-item">
+            <h3>${article.title}</h3>
+            <a href="${article.file}" target="_blank">
+                <button>Read Article</button>
+            </a>
+        </div>
+    `;
+
+  });
+}
+
+// Show all articles first
+displayArticles(articles);
+
+// 🔍 SEARCH FUNCTION
+searchInput.addEventListener("input", function () {
+    const value = this.value.toLowerCase();
+
+    const filtered = articles.filter(article =>
+        article.title.toLowerCase().includes(value)
+    );
+
+    displayArticles(filtered);
+});
+</script>
 
 </body>
 </html>
