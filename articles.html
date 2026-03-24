@@ -3,28 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Articles - Christian Knowledge</title>
+<title>Biblical Articles</title>
 <link rel="stylesheet" href="style.css">
 
 <style>
-.article-list {
-    max-width: 800px;
+.container {
+    max-width: 1000px;
     margin: auto;
+    padding: 20px;
 }
 
-.article-item {
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    margin: 5px;
+    background: darkblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.article {
     background: #f4f4f4;
     padding: 15px;
     margin: 10px 0;
-    border-radius: 8px;
+    border-radius: 5px;
 }
 
-button {
-    padding: 8px 15px;
-    background: #0b2c4a;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.viewer {
+    width: 100%;
+    height: 500px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
 }
 </style>
 
@@ -34,24 +50,40 @@ button {
 
 <header>
     <h1>CHRISTIAN KNOWLEDGE</h1>
-    <p>Understanding the truth through scripture</p>
+    <p>Biblical Articles</p>
 </header>
 
 <nav>
     <a href="index.html">Home</a>
     <a href="books.html">Books</a>
     <a href="videos.html">Videos</a>
-    <a href="articles.html">Articles</a>
+    <a href="articles.html">Biblical Articles</a>
 </nav>
 
-<section class="article-list">
-    <h2>Biblical Articles</h2>
+<div class="container">
 
-    <div id="articles-container"></div>
+<h2>Articles Library</h2>
 
-</section>
+<input type="text" id="search" placeholder="Search articles..." onkeyup="searchArticles()">
+
+<!-- CATEGORY FILTER -->
+<div>
+<button class="filter-btn" onclick="filterCategory('all')">All</button>
+<button class="filter-btn" onclick="filterCategory('trinity')">Trinity</button>
+<button class="filter-btn" onclick="filterCategory('jesus')">Jesus</button>
+<button class="filter-btn" onclick="filterCategory('refutation')">Refutations</button>
+<button class="filter-btn" onclick="filterCategory('salvation')">Salvation</button>
+</div>
+
+<div id="articles-list"></div>
+
+<!-- PDF VIEWER -->
+<iframe id="viewer" class="viewer"></iframe>
+
+</div>
 
 <script>
+
 const articles = [
    "4 KINGDOMS AND 5TH KINGDOM.pdf",
 "Blasphemies of Jehovah's witnesses.pdf",
@@ -96,34 +128,49 @@ const articles = [
 "Why Jesus fasted 40 days and 40 nights.pdf"
 ];
 
-const container = document.getElementById("articles-container");
+const list = document.getElementById("articles-list");
+const viewer = document.getElementById("viewer");
 
-articles.forEach(article => {
-    container.innerHTML += `
-        <div class="article-item">
-            <h3>${article.title}</h3>
-            <a href="${article.file}" target="_blank">
-                <button>Read Article</button>
-            </a>
+// DISPLAY ARTICLES
+function displayArticles(data) {
+    list.innerHTML = "";
+    data.forEach(article => {
+        list.innerHTML += `
+        <div class="article">
+            <h3>${article.name}</h3>
+
+            <button onclick="openPDF('${article.name}')">📖 Read</button>
+            <a href="articles/${article.name}" download>⬇ Download</a>
         </div>
-    `;
-
-  });
+        `;
+    });
 }
 
-// Show all articles first
+// OPEN PDF IN VIEWER
+function openPDF(file) {
+    viewer.src = "articles/" + file;
+}
+
+// SEARCH
+function searchArticles() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let filtered = articles.filter(a => a.name.toLowerCase().includes(input));
+    displayArticles(filtered);
+}
+
+// FILTER
+function filterCategory(cat) {
+    if (cat === "all") {
+        displayArticles(articles);
+    } else {
+        let filtered = articles.filter(a => a.category === cat);
+        displayArticles(filtered);
+    }
+}
+
+// LOAD
 displayArticles(articles);
 
-// 🔍 SEARCH FUNCTION
-searchInput.addEventListener("input", function () {
-    const value = this.value.toLowerCase();
-
-    const filtered = articles.filter(article =>
-        article.title.toLowerCase().includes(value)
-    );
-
-    displayArticles(filtered);
-});
 </script>
 
 </body>
