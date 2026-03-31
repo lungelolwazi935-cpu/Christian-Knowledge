@@ -78,7 +78,7 @@ input {
 <div id="articles-list"></div>
 
 <!-- PDF VIEWER -->
-<iframe id="viewer" class="viewer"></iframe>
+<iframe id="viewer" class="viewer" style="width:100%; height:600px;"></iframe>
 
 </div>
 
@@ -264,7 +264,7 @@ function displayArticles(list) {
     container.innerHTML += `
       <div class="article-card">
         <h3>${article.title}</h3>
-        <a href="${article.file}" target="_blank">📖 Read</a>
+        <button onclick="openPDF('${article.file}')">📖 Read</button>
         <a href="${article.file}" download>⬇ Download</a>
       </div>
     `;
