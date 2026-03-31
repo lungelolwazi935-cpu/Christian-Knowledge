@@ -90,11 +90,11 @@ const articles = [
      file: "articles/4 KINGDOMS AND 5TH KINGDOM.pdf"
    },
    {
-     title: "Blasphemies of Jehovah's witnesses",
+     title: "Blasphemies of Jehovahs witnesses",
      file:"articles/Blasphemies of Jehovah's witnesses.pdf"
    },
    {
-     title: "Constantine didn't established Christianity.",
+     title: "Constantine didnt established Christianity.",
      file: "articles/Constantine didn't established Christianity.pdf"
    },
    { 
@@ -255,7 +255,7 @@ const list = document.getElementById("articles-list");
 const viewer = document.getElementById("viewer");
 
 // DISPLAY ARTICLES
-const container = document.getElementById("articles-container");
+const container = document.getElementById("articles-list");
 
 function displayArticles(list) {
   container.innerHTML = "";
@@ -263,20 +263,12 @@ function displayArticles(list) {
   list.forEach(article => {
     container.innerHTML += `
       <div class="article-card">
-        <h3>${article.name.replace(".pdf", "")}</h3>
-        <a href="articles/${article.name}" target="_blank">📖 Read</a>
-        <a href="articles/${article.name}" download>⬇ Download</a>
+        <h3>${article.title}</h3>
+        <a href="${article.file}" target="_blank">📖 Read</a>
+        <a href="${article.file}" download>⬇ Download</a>
       </div>
     `;
   });
-}
-
-// Show all on load
-displayArticles(articles);
-
-// OPEN PDF IN VIEWER
-function openPDF(file) {
-    viewer.src = "articles/" + file;
 }
 
 // SEARCH
